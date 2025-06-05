@@ -7,7 +7,26 @@ public class Book {
     String publisher;
     String publish_date;
     String category;
+    String book_url="javascript:;";
+    String book_img_url="javascript:;";
+
     int stock_quantity;
+
+    public String getBook_img_url() {
+        return book_img_url;
+    }
+
+    public void setBook_img_url(String book_img_url) {
+        this.book_img_url = book_img_url;
+    }
+
+    public String getBook_url() {
+        return book_url;
+    }
+
+    public void setBook_url(String book_url) {
+        this.book_url = book_url;
+    }
 
     public String getBook_id() {
         return book_id;

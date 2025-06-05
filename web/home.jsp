@@ -34,9 +34,15 @@
 </head>
 <body>
     <ul class="layui-nav">
-        <li class="layui-nav-item layui-this"><a href="">首页</a></li>
+        <li class="layui-nav-item layui-this"><a href="<c:url value="/Home"/>">首页</a></li>
         <li class="layui-nav-item">
-            <a href="javascript:;">借阅</a>
+            <a href="<c:url value="/DoAddBorrow"/>">借阅</a>
+        </li>
+        <li class="layui-nav-item">
+            <a href="<c:url value="/DueBook"/>">归还</a>
+        </li>
+        <li class="layui-nav-item">
+            <a href="<c:url value="/DoAddBook"/>">书籍添加</a>
         </li>
         <li class="layui-nav-item" lay-unselect style="float: right;">
             <a href="javascript:;">

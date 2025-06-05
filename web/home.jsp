@@ -44,6 +44,9 @@
         <li class="layui-nav-item">
             <a href="<c:url value="/DoAddBook"/>">书籍添加</a>
         </li>
+        <li class="layui-nav-item">
+            <a href="showAllBorrow.jsp">借阅记录展示</a>
+        </li>
         <li class="layui-nav-item" lay-unselect style="float: right;">
             <c:if test="${loqinname==null}">
                 <a href="DoLoginServlet" class="layui-btn layui-btn-primary" lay-on="test-page-custom">

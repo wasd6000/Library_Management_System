@@ -44,6 +44,9 @@
         <li class="layui-nav-item">
             <a href="<c:url value="/DoAddBook"/>">书籍添加</a>
         </li>
+        <li class="layui-nav-item">
+            <a href="showAllBorrow.jsp">借阅记录展示</a>
+        </li>
         <li class="layui-nav-item" lay-unselect style="float: right;">
             <a href="javascript:;">
                 <img src="//unpkg.com/outeres@0.0.10/img/layui/icon-v2.png" class="layui-nav-img">

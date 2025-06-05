@@ -2,6 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <meta charset="UTF-8">
     <meta name="referrer" content="never">
     <title>首页</title>
     <style>
@@ -29,9 +30,23 @@
             color: #666;
         }
     </style>
+    <link href="res/css/layui.css" rel="stylesheet">
 </head>
 <body>
-
+    <ul class="layui-nav">
+        <li class="layui-nav-item layui-this"><a href="">首页</a></li>
+        <li class="layui-nav-item">
+            <a href="javascript:;">借阅</a>
+        </li>
+        <li class="layui-nav-item" lay-unselect style="float: right;">
+            <a href="javascript:;">
+                <img src="//unpkg.com/outeres@0.0.10/img/layui/icon-v2.png" class="layui-nav-img">
+            </a>
+            <dl class="layui-nav-child">
+                <dd style="text-align: center;"><a href="">退出</a></dd>
+            </dl>
+        </li>
+    </ul>
         <div class="info">
         <c:forEach  items="${bookArrayList}" var="book">
             <div  class="book">
@@ -63,6 +78,6 @@
             </div>
         </c:forEach>
         </div>
-
+<script src="res/layui.js"></script>
 </body>
 </html>

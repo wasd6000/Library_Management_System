@@ -8,6 +8,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
   <head>
+<%--    自动跳转--%>
+    <meta http-equiv="refresh" content="0;url=home.jsp">
     <title>$Title$</title>
   </head>
   <body>

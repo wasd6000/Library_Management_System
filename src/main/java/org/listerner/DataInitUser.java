@@ -14,42 +14,45 @@ public class DataInitUser implements ServletContextListener {
         System.out.println("------------------初始化用户------------------");
         ServletContext application = sce.getServletContext();
         ArrayList<User> userArrayList = new ArrayList<User>();
-        User user = new User();
-        user.setUser_id("00001");
-        user.setUsername("admin");
-        user.setPassword("123456");
-        user.setName("普通用户1");
-        user.setEmail("00001@qq.com");
-        user.setPhone("12345678901");
-        user.setUser_type("0");//普通用户
-        userArrayList.add(user);
+        User user1 = new User();
+        user1.setUser_id("00001");
+        user1.setUsername("admin");
+        user1.setPassword("123456");
+        user1.setName("普通用户1");
+        user1.setEmail("00001@qq.com");
+        user1.setPhone("12345678901");
+        user1.setUser_type("0");//普通用户
+        userArrayList.add(user1);
 
-        user.setUser_id("00002");
-        user.setUsername("root");
-        user.setPassword("root");
-        user.setName("管理员1");
-        user.setEmail("00002@163.com");
-        user.setPhone("12345678910");
-        user.setUser_type("1");//管理员
-        userArrayList.add(user);
+        User user2 = new User();
+        user2.setUser_id("00002");
+        user2.setUsername("root");
+        user2.setPassword("root");
+        user2.setName("管理员1");
+        user2.setEmail("00002@163.com");
+        user2.setPhone("12345678910");
+        user2.setUser_type("1");//管理员
+        userArrayList.add(user2);
 
-        user.setUser_id("00003");
-        user.setUsername("test");
-        user.setPassword("123");
-        user.setName("普通用户1");
-        user.setEmail("123@126.com");
-        user.setPhone("01234567891");
-        user.setUser_type("0");//普通用户
-        userArrayList.add(user);
+        User user3 = new User();
+        user3.setUser_id("00003");
+        user3.setUsername("test");
+        user3.setPassword("123");
+        user3.setName("普通用户1");
+        user3.setEmail("123@126.com");
+        user3.setPhone("01234567891");
+        user3.setUser_type("0");//普通用户
+        userArrayList.add(user3);
 
-        user.setUser_id("00004");
-        user.setUsername("wasd6000");
-        user.setPassword("123456");
-        user.setName("管理员2");
-        user.setEmail("wasd6000@126.com");
-        user.setPhone("12345612345");
-        user.setUser_type("1");//管理员
-        userArrayList.add(user);
+        User user4 = new User();
+        user4.setUser_id("00004");
+        user4.setUsername("wasd6000");
+        user4.setPassword("123456");
+        user4.setName("管理员2");
+        user4.setEmail("wasd6000@126.com");
+        user4.setPhone("12345612345");
+        user4.setUser_type("1");//管理员
+        userArrayList.add(user4);
 
         application.setAttribute( "userArrayList", userArrayList);
     }

@@ -18,7 +18,5 @@ public class DataInitBorrowRecord implements ServletContextListener {
     }
 
     @Override
-     public void contextDestroyed(ServletContextEvent sce) {
-        ServletContextListener.super.contextDestroyed(sce);
-    }
+     public void contextDestroyed(ServletContextEvent sce) {ServletContextListener.super.contextDestroyed(sce);}
 }

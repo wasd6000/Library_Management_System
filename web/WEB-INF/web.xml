@@ -11,13 +11,4 @@
         <servlet-name>DoLoginServlet</servlet-name>
         <url-pattern>/DoLoginServlet</url-pattern>
     </servlet-mapping>
-
-    <servlet>
-        <servlet-name>DoSignUpServlet</servlet-name>
-        <servlet-class>org.library_management_system.servlet.DoSignUpServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>DoSignUpServlet</servlet-name>
-        <url-pattern>/DoSignUpServlet</url-pattern>
-    </servlet-mapping>
 </web-app>

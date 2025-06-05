@@ -11,8 +11,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet("/DoLogin")
-public class DoLoginServlet extends HttpServlet {
+@WebServlet("/DoSignUp")
+public class DoSignUpServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // 将 GET 请求转发到 POST 请求
@@ -24,10 +24,13 @@ public class DoLoginServlet extends HttpServlet {
         // 设置请求和响应的编码
         req.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html;charset=UTF-8");
-        // 获取用户输入的用户名和密码
+
+        // 获取用户输入的注册信息
         String username = req.getParameter("username");
         String password = req.getParameter("password");
-        HttpSession  session = req.getSession();
+        String user_type = req.getParameter("user_type");
+        String email = req.getParameter("email");
+        String phone = req.getParameter("phone");
         // 从上下文中获取用户列表
         List<User> userArrayList = (List<User>) getServletContext().getAttribute("userArrayList");
 
@@ -37,28 +40,33 @@ public class DoLoginServlet extends HttpServlet {
             getServletContext().setAttribute("userArrayList", userArrayList);
         }
 
-        // 登录逻辑
-        boolean loginSuccess = false;
-        String redirectUrl = "home.jsp";
+        // 检查用户名是否已存在
+        boolean isUsernameExists = false;
         for (User user : userArrayList) {
-            if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
-                loginSuccess = true;
-                if ("1".equals(user.getUser_type())) {
-                    redirectUrl = "homeroot.jsp";
-                }
-                session.setAttribute("loqinname", username);
+            if (user.getUsername().equals(username)) {
+                isUsernameExists = true;
                 break;
             }
         }
 
-        // 根据登录结果进行处理
-        if (loginSuccess) {
-            // 登录成功，重定向到相应页面
-            resp.sendRedirect(redirectUrl);
+        // 根据检查结果进行处理
+        if (isUsernameExists) {
+            // 用户名已存在，重定向回注册页面并携带错误信息
+            req.setAttribute("error", "Username already exists. Please try a different one.");
+            req.getRequestDispatcher("signup.jsp").forward(req, resp);
         } else {
-            // 登录失败，重定向回登录页面并携带错误信息
-            req.setAttribute("error", "Login failed. Please try again.");
-            req.getRequestDispatcher("login.jsp").forward(req, resp);
+            // 用户名可用，创建新用户并添加到用户列表
+            User newUser = new User();
+            newUser.setUsername(username);
+            newUser.setPassword(password);
+            newUser.setUser_type(user_type);
+            newUser.setEmail(email);
+            newUser.setPhone(phone);
+            newUser.setUser_id(String.valueOf(userArrayList.size() + 1));
+            userArrayList.add(newUser);
+
+            // 注册成功，重定向到注册成功页面
+            resp.sendRedirect("login.jsp");
         }
     }
 }

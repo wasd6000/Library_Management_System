@@ -52,12 +52,21 @@
         </dl>
     </li>
     <li class="layui-nav-item" lay-unselect style="float: right;">
-        <a href="javascript:;">
-            <img src="//unpkg.com/outeres@0.0.10/img/layui/icon-v2.png" class="layui-nav-img">
-        </a>
-        <dl class="layui-nav-child">
-            <dd style="text-align: center;"><a href="">退出</a></dd>
+        <c:if test="${loqinname==null}">
+            <a href="DoLoginServlet" class="layui-btn layui-btn-primary" lay-on="test-page-custom">
+                <img src="https://bpic.588ku.com/element_origin_min_pic/19/04/09/e3330d623cad123abc8545573a86cc38.jpg" class="layui-nav-img">
+                登录
+            </a>
+        </c:if>
+        <c:if test="${loqinname!=null}">
+            <a class="layui-btn layui-btn-primary" lay-on="test-page-custom">
+                <img src="https://tse2-mm.cn.bing.net/th/id/OIP-C.NwamPndfqz2IZkxK_5racwHaHa?r=0&rs=1&pid=ImgDetMain" class="layui-nav-img">
+                    ${loqinname}
+            </a>
+            <dl class="layui-nav-child">
+            <dd style="text-align: center;"><a href="<c:url value="/DoLogout"/>">退出</a></dd>
         </dl>
+        </c:if>
     </li>
 </ul>
 <div class="info">

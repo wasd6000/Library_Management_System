@@ -18,7 +18,6 @@ public class DataInitUser implements ServletContextListener {
         user1.setUser_id("00001");
         user1.setUsername("admin");
         user1.setPassword("123456");
-        user1.setName("普通用户1");
         user1.setEmail("00001@qq.com");
         user1.setPhone("12345678901");
         user1.setUser_type("0");//普通用户
@@ -28,7 +27,6 @@ public class DataInitUser implements ServletContextListener {
         user2.setUser_id("00002");
         user2.setUsername("root");
         user2.setPassword("root");
-        user2.setName("管理员1");
         user2.setEmail("00002@163.com");
         user2.setPhone("12345678910");
         user2.setUser_type("1");//管理员
@@ -38,7 +36,6 @@ public class DataInitUser implements ServletContextListener {
         user3.setUser_id("00003");
         user3.setUsername("test");
         user3.setPassword("123");
-        user3.setName("普通用户1");
         user3.setEmail("123@126.com");
         user3.setPhone("01234567891");
         user3.setUser_type("0");//普通用户
@@ -48,7 +45,6 @@ public class DataInitUser implements ServletContextListener {
         user4.setUser_id("00004");
         user4.setUsername("wasd6000");
         user4.setPassword("123456");
-        user4.setName("管理员2");
         user4.setEmail("wasd6000@126.com");
         user4.setPhone("12345612345");
         user4.setUser_type("1");//管理员

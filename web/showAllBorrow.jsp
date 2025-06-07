@@ -74,7 +74,6 @@
         </div>
     </div>
 </div>
-
 <!-- 借阅记录表格 -->
 <div class="card">
     <div class="card-title">

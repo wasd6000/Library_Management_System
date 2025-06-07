@@ -10,8 +10,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet("/DoSignUp")
-public class DoSignUpServlet extends HttpServlet {
+@WebServlet("/UpuserSer")
+public class UpUserServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // 将 GET 请求转发到 POST 请求
@@ -33,39 +33,20 @@ public class DoSignUpServlet extends HttpServlet {
         // 从上下文中获取用户列表
         List<User> userArrayList = (List<User>) getServletContext().getAttribute("userArrayList");
 
-        // 如果用户列表为空，则初始化
-        if (userArrayList == null) {
-            userArrayList = new ArrayList<>();
-            getServletContext().setAttribute("userArrayList", userArrayList);
-        }
 
-        // 检查用户名是否已存在
-        boolean isUsernameExists = false;
+        // 查找用户并更新信息
         for (User user : userArrayList) {
             if (user.getUsername().equals(username)) {
-                isUsernameExists = true;
+                user.setPassword(password);
+                user.setUser_type(user_type);
+                user.setEmail(email);
+                user.setPhone(phone);
                 break;
             }
         }
 
-        // 根据检查结果进行处理
-        if (isUsernameExists) {
-            // 用户名已存在，重定向回注册页面并携带错误信息
-            req.setAttribute("error", "Username already exists. Please try a different one.");
-            req.getRequestDispatcher("signup.jsp").forward(req, resp);
-        } else {
-            // 用户名可用，创建新用户并添加到用户列表
-            User newUser = new User();
-            newUser.setUsername(username);
-            newUser.setPassword(password);
-            newUser.setUser_type(user_type);
-            newUser.setEmail(email);
-            newUser.setPhone(phone);
-            newUser.setUser_id(String.valueOf(userArrayList.size() + 1));
-            userArrayList.add(newUser);
+        // 更改成功，重定向修改页面
+        resp.sendRedirect("showAlluser.jsp");
 
-            // 注册成功，重定向到注册成功页面
-            resp.sendRedirect("login.jsp");
-        }
     }
 }

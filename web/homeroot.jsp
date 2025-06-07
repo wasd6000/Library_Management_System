@@ -42,7 +42,7 @@
         <a href="<c:url value="/DueBook"/>">归还</a>
     </li>
     <li class="layui-nav-item">
-        <a href="DoAddBook.jsp"/>">书籍添加</a>
+        <a href="DoAddBook.jsp">书籍添加</a>
     </li>
     <li class="layui-nav-item">
         <a href="showAllBorrow.jsp">借阅记录展示</a>

@@ -16,7 +16,7 @@ public class UpUser extends HttpServlet {
             for (User user : userArrayList) {
                 if (user.getUsername().equals(username)) {
                     request.setAttribute("user", user);
-                    request.getRequestDispatcher("updateUser.jsp").forward(request, response);
+                    request.getRequestDispatcher("upUser.jsp").forward(request, response);
                     return;
                 }
             }

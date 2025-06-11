@@ -8,18 +8,30 @@
     <link rel="stylesheet" href="res/css/layui.css" media="all">
     <!-- 自定义样式 -->
     <style>
+        /* 背景样式 */
+        body {
+            background-image: url('https://ts1.tc.mm.bing.net/th/id/R-C.ac133896b2735871271f35272484cfbf?rik=k0a86ZhyanNt9g&riu=http%3a%2f%2fn.sinaimg.cn%2fsinacn10114%2f600%2fw1920h1080%2f20190518%2f1372-hwzkfpv2143245.jpg&ehk=DU3HSmHLIjdJx1fj6fhR1FLcDsewKDsoKdyrELfab%2bg%3d&risl=&pid=ImgRaw&r=0'); /* 添加背景图片 */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
         .centered-card {
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 50vh; /* 让容器占满整个视口高度 */
-            background-color: white; /* 添加背景颜色 */
+            height: 100vh; /* 让容器占满整个视口高度 */
         }
         .layui-card {
             width: 400px; /* 设置卡片宽度 */
             border: 2px solid #009688; /* 添加边框，颜色为 Layui 主色调 */
             border-radius: 8px; /* 添加圆角边框 */
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 添加阴影效果 */
+            background-color: rgba(255, 255, 255, 0.95); /* 半透明背景 */
         }
         .layui-card-header {
             background-color: #009688; /* 设置卡片头部背景颜色 */

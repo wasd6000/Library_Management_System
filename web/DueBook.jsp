@@ -166,8 +166,8 @@
                         <td><span class="book-category">${book.category}</span></td>
                         <td>${book.stock_quantity}</td>
                         <td class="action-cell">
-                            <a href="DueBook" class="layui-btn layui-btn-xs layui-bg-blue">
-                                <i class="layui-icon layui-icon-edit"></i> 归还
+                            <a href="DueBook?id=${book.book_id}&name=${loqinname}" class="layui-btn layui-btn-xs layui-btn-danger">
+                                <i class="layui-icon layui-icon-delete"></i> 归还
                             </a>
                         </td>
                     </tr>

@@ -6,7 +6,7 @@
 <html>
 <head>
     <title>图书管理系统</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/layui-src/dist/css/layui.css">
+    <link rel="stylesheet" href="res/css/layui.css">
     <style>
         body {
             background-color: #f8f9fa;
@@ -73,13 +73,14 @@
     </style>
 </head>
 <body>
+
 <ul class="layui-nav">
-    <li class="layui-nav-item layui-this"><a href="<c:url value="/HomeRoot"/>">首页</a></li>
+    <li class="layui-nav-item"><a href="<c:url value="/HomeRoot"/>">首页</a></li>
     <li class="layui-nav-item">
-        <a href="<c:url value="/DoAddBorrow"/>">借阅</a>
+        <a href="DoAddBorrow.jsp">借阅</a>
     </li>
     <li class="layui-nav-item">
-        <a href="<c:url value="/DueBook"/>">归还</a>
+        <a href="DueBook.jsp">归还</a>
     </li>
     <li class="layui-nav-item">
         <a href="DoAddBook.jsp">书籍添加</a>
@@ -87,7 +88,7 @@
     <li class="layui-nav-item">
         <a href="showAllBorrow.jsp">借阅记录展示</a>
     </li>
-    <li class="layui-nav-item">
+    <li class="layui-nav-item layui-this">
         <a href="javascript:;">管理</a>
         <dl class="layui-nav-child">
             <dd><a href="showAlluser.jsp">用户管理</a></dd>
@@ -196,7 +197,7 @@
     </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/layui-src/dist/layui.js"></script>
+<script src="res/layui.js"></script>
 <script>
     layui.use('carousel', function(){
         var carousel = layui.carousel;

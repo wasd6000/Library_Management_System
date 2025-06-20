@@ -36,10 +36,10 @@
 <ul class="layui-nav">
     <li class="layui-nav-item layui-this"><a href="<c:url value="/HomeRoot"/>">首页</a></li>
     <li class="layui-nav-item">
-        <a href="<c:url value="/DoAddBorrow"/>">借阅</a>
+        <a href="DoAddBorrow.jsp">借阅</a>
     </li>
     <li class="layui-nav-item">
-        <a href="<c:url value="/DueBook"/>">归还</a>
+        <a href="DueBook.jsp">归还</a>
     </li>
     <li class="layui-nav-item">
         <a href="DoAddBook.jsp">书籍添加</a>

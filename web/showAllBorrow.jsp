@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <title>借阅记录查阅 | 图书管理系统</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/layui/2.8.3/css/layui.min.css">
+    <link rel="stylesheet" href="res/css/layui.css">
     <style>
         /* 顶部标题栏样式 */
         .header {
@@ -165,7 +165,7 @@
     <p>© 四川文理学院 2023级14班 图书管理系统 | 借阅记录管理</p>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/layui/2.8.3/layui.min.js"></script>
+<script src="res/layui.js"></script>
 <script>
     layui.use(['form', 'laypage'], function(){
         var form = layui.form;

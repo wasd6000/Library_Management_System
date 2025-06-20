@@ -45,6 +45,9 @@ public class DoLoginServlet extends HttpServlet {
                 loginSuccess = true;
                 if ("1".equals(user.getUser_type())) {
                     redirectUrl = "homeroot.jsp";
+                    session.setAttribute("root", "1");
+                }else{
+                    session.setAttribute("root", "0");
                 }
                 session.setAttribute("loqinname", username);
                 break;

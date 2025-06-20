@@ -1,48 +1,42 @@
+<%@ page import="org.library_management_system.JavaBeans.Book" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="org.library_management_system.JavaBeans.User" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
-    <title>用户管理</title>
+    <title>图书管理系统</title>
     <link rel="stylesheet" href="res/css/layui.css">
     <style>
-        /* 绿白色主题样式 */
         body {
-            background-color: #f8f9fa; /* 白色背景 */
-            color: #333; /* 深灰色文字 */
+            background-color: #f8f9fa;
+            color: #333;
             font-family: Arial, sans-serif;
         }
         h2 {
-            color: #009688; /* 深绿色标题 */
-        }
-        .layui-table {
-            background-color: #ffffff; /* 白色表格背景 */
-            border: 1px solid #90ee90; /* 浅绿色边框 */
-        }
-        .layui-table th {
-            background-color: #009688; /* 深绿色表头 */
-            color: #fff; /* 白色文字 */
-        }
-        .layui-btn-normal {
-            background-color: #009688; /* 浅绿色按钮 */
-            color: #fff; /* 白色文字 */
-        }
-        .layui-btn-danger {
-            background-color: #ff6347; /* 番茄红按钮 */
-            color: #fff; /* 白色文字 */
-        }
-        .user-title {
+            color: #009688;
             text-align: center;
         }
-        .table-container {
-            width: 80%; /* 设置表格容器的宽度 */
-            margin: 0 auto; /* 居中显示 */
-            overflow-y: auto; /* 启用垂直滚动条 */
-        }
         .layui-table {
-            width: 100%; /* 表格宽度占满容器 */
+            background-color: #ffffff;
+            border: 1px solid #90ee90;
+        }
+        .layui-table th {
+            background-color: #009688;
+            color: #fff;
+        }
+        .layui-btn-normal {
+            background-color: #009688;
+            color: #fff;
+        }
+        .layui-btn-danger {
+            background-color: #ff6347;
+            color: #fff;
+        }
+        .table-container {
+            width: 80%;
+            margin: 0 auto;
+            overflow-y: auto;
         }
         .carousel {
             width: 100%;
@@ -79,12 +73,15 @@
     </style>
 </head>
 <body>
+<c:if test="${loqinname==null}">
+    <meta http-equiv="refresh" content="0;url=DoLoginServlet">
+</c:if>
 <ul class="layui-nav">
     <li class="layui-nav-item"><a href="<c:url value="/HomeRoot"/>">首页</a></li>
     <li class="layui-nav-item">
         <a href="DoAddBorrow.jsp">借阅</a>
     </li>
-    <li class="layui-nav-item">
+    <li class="layui-nav-item layui-this">
         <a href="DueBook.jsp">归还</a>
     </li>
     <li class="layui-nav-item">
@@ -93,22 +90,24 @@
     <li class="layui-nav-item">
         <a href="showAllBorrow.jsp">借阅记录展示</a>
     </li>
-    <li class="layui-nav-item layui-this">
-        <a href="javascript:;">管理</a>
-        <dl class="layui-nav-child">
-            <dd><a href="showAlluser.jsp">用户管理</a></dd>
-            <dd><a href="showAllbook.jsp">书籍管理</a></dd>
-        </dl>
-    </li>
+    <c:if test="${root==1}">
+        <li class="layui-nav-item">
+            <a href="javascript:;">管理</a>
+            <dl class="layui-nav-child">
+                <dd><a href="showAlluser.jsp">用户管理</a></dd>
+                <dd><a href="showAllbook.jsp">书籍管理</a></dd>
+            </dl>
+        </li>
+    </c:if>
     <li class="layui-nav-item" lay-unselect style="float: right;">
         <c:if test="${loqinname==null}">
-            <a href="DoLoginServlet" class="layui-btn layui-btn-primary" lay-on="test-page-custom">
+            <a href="DoLoginServlet" class="layui-btn layui-btn-primary">
                 <img src="https://bpic.588ku.com/element_origin_min_pic/19/04/09/e3330d623cad123abc8545573a86cc38.jpg" class="layui-nav-img">
                 登录
             </a>
         </c:if>
         <c:if test="${loqinname!=null}">
-            <a class="layui-btn layui-btn-primary" lay-on="test-page-custom">
+            <a class="layui-btn layui-btn-primary">
                 <img src="https://tse2-mm.cn.bing.net/th/id/OIP-C.NwamPndfqz2IZkxK_5racwHaHa?r=0&rs=1&pid=ImgDetMain" class="layui-nav-img">
                     ${loqinname}
             </a>
@@ -119,7 +118,6 @@
     </li>
 </ul>
 
-<!-- 图书购买优惠轮播图 -->
 <div class="carousel">
     <div class="layui-carousel" lay-filter="book-offer-carousel">
         <div carousel-item="">
@@ -130,55 +128,56 @@
     </div>
 </div>
 
-<h2 class="layui-title user-title">用户管理</h2>
+<h2 class="layui-title user-title">归还</h2>
 <div class="table-container">
     <table class="layui-table">
         <colgroup>
             <col width="80">
+            <col width="200">
+            <col width="120">
+            <col width="150">
+            <col width="120">
+            <col width="100">
             <col width="80">
-            <col width="80">
-            <col width="60">
-            <col width="80">
-            <col width="60">
+            <col width="160">
         </colgroup>
         <thead>
         <tr>
-            <th>用户名</th>
-            <th>密码</th>
-            <th>用户类型</th>
-            <th>邮箱</th>
-            <th>电话</th>
+            <th>ID</th>
+            <th>书名</th>
+            <th>作者</th>
+            <th>出版社</th>
+            <th>出版时间</th>
+            <th>类别</th>
+            <th>数量</th>
             <th>操作</th>
         </tr>
         </thead>
         <tbody>
-        <c:forEach items="${applicationScope.userArrayList}" var="user">
-            <tr>
-                <td>${user.username}</td>
-                <td>******</td> <!-- 隐藏密码 -->
-                <td>
-                    <c:choose>
-                        <c:when test="${user.user_type == 1}">
-                            管理员
-                        </c:when>
-                        <c:otherwise>
-                            普通用户
-                        </c:otherwise>
-                    </c:choose>
-                </td>
-                <td>${user.email}</td>
-                <td>${user.phone}</td>
-                <td>
-                    <a href="DeleteUser?username=${user.username}" class="layui-btn layui-btn-danger">删除</a>
-                    <a href="UpUser?username=${user.username}" class="layui-btn layui-btn-normal">修改</a>
-                </td>
-            </tr>
+        <c:forEach items="${applicationScope.borrowRecordArrayList}" var="borrow">
+            <c:forEach items="${applicationScope.bookArrayList}" var="book">
+                <c:if test="${book.book_id==borrow.book_id&&borrow.return_date==''}">
+                    <tr>
+                        <td>${book.book_id}</td>
+                        <td><span class="book-title">${book.title}</span></td>
+                        <td>${book.author}</td>
+                        <td>${book.publisher}</td>
+                        <td>${book.publish_date}</td>
+                        <td><span class="book-category">${book.category}</span></td>
+                        <td>${book.stock_quantity}</td>
+                        <td class="action-cell">
+                            <a href="DueBook" class="layui-btn layui-btn-xs layui-bg-blue">
+                                <i class="layui-icon layui-icon-edit"></i> 归还
+                            </a>
+                        </td>
+                    </tr>
+                </c:if>
+            </c:forEach>
         </c:forEach>
         </tbody>
     </table>
 </div>
 
-<!-- 新书广告 -->
 <h2 class="layui-title user-title">新书上架</h2>
 <div class="new-books">
     <div class="book-card">
@@ -194,11 +193,11 @@
         <h3>哲学家的最后一课</h3>
     </div>
     <div class="book-card">
-        <img src="https://img9.doubanio.com/view/subject/s/public/s35120245.jpg"" alt="New Book 2">
+        <img src="https://img9.doubanio.com/view/subject/s/public/s35120245.jpg" alt="New Book 4">
         <h3>怪物之乡</h3>
     </div>
     <div class="book-card">
-        <img src="https://img1.doubanio.com/view/subject/s/public/s34263440.jpg" alt="New Book 2">
+        <img src="https://img1.doubanio.com/view/subject/s/public/s34263440.jpg" alt="New Book 5">
         <h3>盗墓笔记 1</h3>
     </div>
 </div>
@@ -207,14 +206,13 @@
 <script>
     layui.use('carousel', function(){
         var carousel = layui.carousel;
-        // 设置轮播图
         carousel.render({
             elem: '#book-offer-carousel',
-            width: '100%', // 设置轮播图宽度
-            height: '300px', // 设置轮播图高度
-            arrow: 'always', // 总是显示箭头
-            anim: 'fadein', // 切换动画方式
-            interval: 3000 // 切换时间间隔
+            width: '100%',
+            height: '300px',
+            arrow: 'always',
+            anim: 'fadein',
+            interval: 3000
         });
     });
 </script>

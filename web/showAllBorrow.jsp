@@ -79,17 +79,7 @@
     <div class="card-title">
         <i class="layui-icon layui-icon-form"></i> 借阅记录列表
     </div>
-    <table class="layui-table" lay-size="sm">
-        <colgroup>
-            <col width="120">
-            <col width="200">
-            <col width="120">
-            <col width="100">
-            <col width="100">
-            <col width="100">
-            <col width="80">
-
-        </colgroup>
+    <table class="layui-table" lay-size="sm" style="width: 100%">
         <thead>
         <tr>
             <th>借阅ID</th>
@@ -99,45 +89,49 @@
             <th>应还日期</th>
             <th>归还日期</th>
             <th>状态</th>
+            <th>操作</th>
         </tr>
         </thead>
         <tbody>
+        <!-- 表格内容 -->
+        </tbody>
+    
         <!-- 使用JSTL遍历借阅记录 -->
         <c:forEach items="${applicationScope.borrowRecordArrayList}" var="record">
             <c:set var="bookName" value="未知书籍" />
             <c:forEach items="${applicationScope.bookArrayList}" var="book">
-                <c:if test="${book.id == record.book_id}">
-                    <c:set var="bookName" value="${book.name}" />
+                <c:if test="${book.book_id == record.book_id}">  <!-- 修复1: book.book_id -->
+                    <c:set var="bookName" value="${book.title}" />  <!-- 修复2: book.title -->
                 </c:if>
             </c:forEach>
 
             <c:set var="userName" value="未知用户" />
             <c:forEach items="${applicationScope.userArrayList}" var="user">
-                <c:if test="${user.id == record.user_id}">
+                <c:if test="${user.user_id == record.user_id}">
                     <c:set var="userName" value="${user.username}" />
                 </c:if>
             </c:forEach>
 
             <tr>
-                <td>${record.id.substring(0, 10)}</td>
+                <td>${record.record_id.substring(0, 10)}</td>
                 <td>${bookName}</td>
                 <td>${userName}</td>
-                <td><fmt:formatDate value="${record.borrow_time}" pattern="yyyy-MM-dd"/></td>
-                <td><fmt:formatDate value="${record.due_time}" pattern="yyyy-MM-dd"/></td>
+                <td>${record.borrow_date}</td>
+                <td>${record.due_date}</td>
                 <td>
                     <c:choose>
-                        <c:when test="${not empty record.return_time}">
-                            <fmt:formatDate value="${record.return_time}" pattern="yyyy-MM-dd"/>
+                        <c:when test="${not empty record.return_date}">
+                            ${record.return_date}
                         </c:when>
                         <c:otherwise>-</c:otherwise>
                     </c:choose>
                 </td>
                 <td>
                     <c:choose>
-                        <c:when test="${not empty record.return_time}">
+                        <c:when test="${not empty record.return_date}">
                             <span class="status status-returned">已归还</span>
                         </c:when>
-                        <c:when test="${record.is_overdue}">
+                        <c:when test="${record.is_overdue == 'true' || record.is_overdue == '1'}">
                             <span class="status status-overdue">已超期</span>
                         </c:when>
                         <c:otherwise>
@@ -149,6 +143,8 @@
                     <button class="layui-btn layui-btn-xs layui-btn-normal">
                         <i class="layui-icon layui-icon-about"></i> 详情
                     </button>
+                </td>
+            </tr>
 
                 </td>
             </tr>
@@ -199,3 +195,4 @@
 </script>
 </body>
 </html>
+
